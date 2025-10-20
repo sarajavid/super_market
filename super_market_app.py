@@ -1,9 +1,21 @@
 from tkinter import *
 from tkinter import messagebox
 from super_market_module import *
+product_list=[]
 
 def save():
-    pass
+    try:
+        name_validator(name.get())
+        brand_validator(brand.get())
+        product = {"id":id.get(),"name": name.get(),"brand": brand.get(),}
+        product_list.append(product)
+        messagebox.showinfo("Saved","Person saved successfully")
+        id.set(0)
+        name.set("")
+        brand.set("")
+    except Exception as e:
+        messagebox.showerror("Save Error",f"Error : {e}")
+
 
 def total():
     pass
@@ -40,6 +52,7 @@ Entry(window,textvariable=price).place(x=100, y =180)
 
 # Expire_date
 Label(window, text="Expire date").place(x=20,y=220)
+Label(window, text="(yyyy-mm-dd)").place(x=100,y=240)
 expire_date = StringVar()
 Entry(window,textvariable=expire_date).place(x=100, y =220)
 
