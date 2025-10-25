@@ -1,6 +1,7 @@
 import re
-from datetime import datetime
+from datetime import datetime,date
 
+product_list=[]
 
 def name_validator(name):
     if not re.match(r"^[A-Za-z\s]{3,30}$", name):
@@ -19,8 +20,8 @@ def price_validator(price):
     if not(type(price) == int and 0 < price):
         raise ValueError("Invalid price!!!!")
 
-def expire_date(expire_date):
+def expire_date_validator(expire_date):
     try:
-        datetime.strptime(expire_date, '%Y-%m-%d').date()
+        return datetime.strptime(expire_date, '%Y-%m-%d').date()
     except ValueError:
         raise ValueError("Invalid date!!!!")
